@@ -19,13 +19,13 @@ class File
             if ($type == "1") {
                 $dinosaurs[$line[0]] = [
                     'NAME' => $line[0],
-                    'LEG_LENGTH' => $line[1],
+                    'LEG_LENGTH' => (float)$line[1],
                     'DIET' => $line[2],
                 ];
             } else {
                 $dinosaurs[$line[0]] = [
                     'NAME' => $line[0],
-                    'STRIDE_LENGTH' => $line[1],
+                    'STRIDE_LENGTH' => (float)$line[1],
                     'STANCE' => $line[2],
                 ];
             }
@@ -56,5 +56,14 @@ class File
             }
             fclose($fw);
         }
+    }
+
+    public function filterAndMarge($f1, $f2)
+    {
+        return array_filter(
+            array_merge_recursive($f1, $f2),
+            function ($value) {
+                return $value["STANCE"] == "bipedal" && $value['LEG_LENGTH'];
+            }, ARRAY_FILTER_USE_BOTH);
     }
 }

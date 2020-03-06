@@ -15,15 +15,16 @@ $f1 = $file->fileOpen("1");
 $f2 = $file->fileOpen("2");
 
 $dinosaursP = $file->filterAndMarge($f1, $f2);
-
+//print_r($dinosaursP);
 foreach ($dinosaursP as $key => $dp) {
-    $dinosaursP[$key]['speed'] =
-        $gravitationalFormula->calculateSpeed($dp['STRIDE_LENGTH'], $dp['LEG_LENGTH']);
+        $dinosaursP[$key]['speed'] =
+            $gravitationalFormula->calculateSpeed($dp['STRIDE_LENGTH'], $dp['LEG_LENGTH']);
+
+
 }
 
 usort($dinosaursP, function ($a, $b) {
-    return $a['speed'] - $b['speed'];
+    return $b['speed'] - $a['speed'];
 });
-
 $file->writeFile($dinosaursP);
 
