@@ -9,9 +9,9 @@ class Gravitational_formula
         $this->meterPerSecond = $meterPerSecond;
     }
 
-    public function calculateSpeed($leg_length, $stride_length)
+    public function calculateSpeed($dp)
     {
-        return (($stride_length / $leg_length) - 1) * sqrt($leg_length * $this->g());
+        return (($dp['STRIDE_LENGTH'] / $dp['LEG_LENGTH']) - 1) * sqrt($dp['LEG_LENGTH'] * $this->g());
     }
 
     private function g()
